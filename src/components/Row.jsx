@@ -26,7 +26,7 @@ function Row({ title, id, fetchUrl, isLarge }) {
   };
   return (
     <S.RowContainer>
-      <h2>{title}</h2>
+      <h2 style={{ color: 'white' }}>{title}</h2>
       <div>
         <div>
           <span>{'<'}</span>
