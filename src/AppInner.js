@@ -1,36 +1,26 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Nav from './components/Nav';
-import Banner from './components/Banner';
-import Row from './components/Row';
-import requests from './api/requests';
 import Footer from './components/Footer';
+
+const Main = React.lazy(() => import('./pages/Main'));
+const Detail = React.lazy(() => import('./pages/Detail'));
+const Search = React.lazy(() => import('./pages/Search'));
 
 function AppInner() {
   return (
-    <div>
+    <BrowserRouter>
       <Nav />
-      <Banner />
-
-      <Row
-        title='NETFLIX ORIGINALS'
-        id='NO'
-        fetchUrl={requests.fetchNetflixOriginals}
-        isLargeRow
-      />
-      <Row title='Trending Now' id='TN' fetchUrl={requests.fetchTrending} />
-      <Row title='Top Rated' id='TR' fetchUrl={requests.fetchTopRated} />
-      <Row
-        title='Action Movies'
-        id='AM'
-        fetchUrl={requests.fetchActionMovies}
-      />
-      <Row
-        title='Comedy Movies'
-        id='CM'
-        fetchUrl={requests.fetchComedyMovies}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/:movieId' element={<Detail />} />
+          <Route path='/search' element={<Search />} />
+        </Routes>
+      </Suspense>
       <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 
