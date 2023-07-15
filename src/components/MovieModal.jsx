@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { styled } from 'styled-components';
+import useOnClickOutside from '../hooks/useOnclickOutside';
 
 function MovieModal({
   backdrop_path,
@@ -15,10 +16,15 @@ function MovieModal({
     // 특정 글자수가 넘어가면 자르기
     return str?.length > n ? str.substr(0, n - 1) + '...' : str;
   };
+  const ref = useRef();
+  useOnClickOutside(ref, () => {
+    setModalOpen(false);
+  });
+
   return (
     <S.ModalLayOut>
       <S.ModalWrapper>
-        <S.Modal>
+        <S.Modal ref={ref}>
           <S.ModalClose onClick={() => setModalOpen(false)}>X</S.ModalClose>
           <S.ModalPosterImg
             src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
