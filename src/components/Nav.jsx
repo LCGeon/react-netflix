@@ -36,6 +36,7 @@ function Nav() {
         src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/170px-Netflix_2015_logo.svg.png'
       />
       <S.navInput
+        show={show}
         value={searchValue}
         onChange={handleChange}
         type='text'
@@ -55,7 +56,7 @@ const S = {
     top: 0;
     width: 100%;
     height: 30px;
-    z-index: 1;
+    z-index: 9998;
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -81,12 +82,16 @@ const S = {
   navInput: styled.input`
     position: fixed;
     left: 50%;
+    height: 40px;
+    width: 360px;
     transform: translate(-50%, 0);
     background-color: rgba(0, 0, 0, 0.582);
     border-radius: 5px;
     color: white;
     padding: 5px;
     border: none;
+    background-color: ${(props) =>
+      props.show ? '#b3b3b3' : 'rgba(0, 0, 0, 0.582)'};
   `,
 };
 
