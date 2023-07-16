@@ -39,7 +39,7 @@ function MovieModal({
             </S.ModalDetail>
             <S.ModalTitle>{title ? title : name}</S.ModalTitle>
             <S.ModalOverView> 평점: {vote_average}</S.ModalOverView>
-            <S.ModalOverView>{truncate(overview, 130)}</S.ModalOverView>
+            <S.ModalOverView>{truncate(overview, 250)}</S.ModalOverView>
           </S.ModalContents>
         </S.Modal>
       </S.ModalWrapper>
@@ -49,7 +49,7 @@ function MovieModal({
 
 const S = {
   ModalLayOut: styled.div`
-    z-index: 1200;
+    z-index: 9999;
     position: absolute;
   `,
   ModalWrapper: styled.div`
@@ -63,7 +63,7 @@ const S = {
   Modal: styled.div`
     position: relative;
     max-width: 800px;
-    height: 700px;
+    height: 850px;
     margin-top: 30px;
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
       0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
